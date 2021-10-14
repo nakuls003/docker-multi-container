@@ -16,7 +16,7 @@ after_success:
   - docker build -t "$DOCKER_ID"/multi-server ./server
   - docker build -t "$DOCKER_ID"/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push "$DOCKER_ID"/multi-client:latest
-  - docker push "$DOCKER_ID"/multi-nginx:latest
-  - docker push "$DOCKER_ID"/multi-server:latest
-  - docker push "$DOCKER_ID"/multi-worker:latest
+  - docker push "$DOCKER_ID"/multi-client
+  - docker push "$DOCKER_ID"/multi-nginx
+  - docker push "$DOCKER_ID"/multi-server
+  - docker push "$DOCKER_ID"/multi-worker
