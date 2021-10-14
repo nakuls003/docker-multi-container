@@ -5,18 +5,18 @@ services:
   - docker
 
 before_install:
-  - docker build -t nakuls003/client-test -f ./client/Dockerfile.dev ./client
+  - docker build -t "$DOCKER_ID"/client-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true nakuls003/client-test npm test
+  - docker run -e CI=true "$DOCKER_ID"/client-test npm test
 
 after_success:
-  - docker build -t nakuls003/multi-client ./client
-  - docker build -t nakuls003/multi-nginx ./nginx
-  - docker build -t nakuls003/multi-server ./server
-  - docker build -t nakuls003/multi-worker ./worker
+  - docker build -t "$DOCKER_ID"/multi-client ./client
+  - docker build -t "$DOCKER_ID"/multi-nginx ./nginx
+  - docker build -t "$DOCKER_ID"/multi-server ./server
+  - docker build -t "$DOCKER_ID"/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push nakuls003/multi-client:latest
-  - docker push nakuls003/multi-nginx:latest
-  - docker push nakuls003/multi-server:latest
-  - docker push nakuls003/multi-worker:latest
+  - docker push "$DOCKER_ID"/multi-client:latest
+  - docker push "$DOCKER_ID"/multi-nginx:latest
+  - docker push "$DOCKER_ID"/multi-server:latest
+  - docker push "$DOCKER_ID"/multi-worker:latest
