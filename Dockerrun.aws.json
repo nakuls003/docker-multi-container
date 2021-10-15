@@ -5,19 +5,22 @@
             "name": "client",
             "hostname": "client",
             "image": "nakuls003/multi-client",
-            "essential": false
+            "essential": false,
+            "memory": 128
         },
         {
             "name": "server",
             "hostname": "api",
             "image": "nakuls003/multi-server",
-            "essential": false
+            "essential": false,
+            "memory": 128
         },
         {
             "name": "worker",
             "hostname": "worker",
             "image": "nakuls003/multi-worker",
-            "essential": false
+            "essential": false,
+            "memory": 128
         },
         {
             "name": "nginx",
@@ -29,7 +32,8 @@
                     "containerPort": 80
                 }
             ],
-            "links": ["client", "server"]
+            "links": ["client", "server"],
+            "memory": 128
         }
     ]
 }
